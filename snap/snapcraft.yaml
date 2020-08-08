@@ -187,6 +187,16 @@ parts:
       - -usr/share/X11
       - -etc/X11
       - -etc/fonts
+    override-prime: |
+      set -o nounset
+
+      snapcraftctl prime
+
+      ln \
+        --symbolic \
+        --force \
+        ../usr/lib/jvm/java-8-openjdk-amd64/bin/java \
+        bin/java
 
 # Apps that are exposed by the snap package
 # If the _app_name_ is identical with the _snap_name_ it can be directly run
