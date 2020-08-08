@@ -77,7 +77,7 @@ base: core20
 # Use `devmode` to getting started
 # Flip to `strict` once you have the right plugs and slots,
 # or `classic` once you determine that strict confinement is not currently possible
-confinement: devmode
+confinement: strict
 
 # Snap Grade
 # Use `devel` to getting started
@@ -236,16 +236,9 @@ plugs:
   # The auto-connection requires store grant
   # https://forum.snapcraft.io/t/the-personal-files-interface/9357
   # https://forum.snapcraft.io/t/the-system-files-interface/9358
-  #user-wide-configs:
-    #interface: personal-files
-    #read:
-    #- $HOME/.config/bfg
-  #system-wide-configs:
-    #interface: system-files
-    #read:
-    #- /etc/bfg
-
-  # Network access
-  #network:
+  config-git:
+    interface: personal-files
+    read:
+    - $HOME/.gitconfig
 
 #slots:

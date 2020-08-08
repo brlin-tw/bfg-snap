@@ -34,5 +34,15 @@ until test "${#}" -eq 0; do
     shift 1
 done
 
+if ! snapctl is-connected config-git; then
+    # lint: The tilde character is used verbatim instead of command expansion
+    # shellcheck disable=SC2016
+    pritnf -- \
+        'Launcher: Error: BFG Repo-cleaner requires read-only access to your ~/.gitconfig, please run the `snap connect %s:config-git` command as root and retry.\n' \
+        "${SNAP_NAME}" \
+        1>&2
+    exit 1
+fi
+
 # Finally run the next part of the command chain
 exec java "${java_args[@]}" -jar "${SNAP:-${script_dir}/..}"/sbt.jar "${app_args[@]}"
