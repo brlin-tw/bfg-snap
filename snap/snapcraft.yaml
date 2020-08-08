@@ -32,6 +32,14 @@ description: |
   [2]: https://rtyley.github.io/bfg-repo-cleaner/#speed
   [3]: https://rtyley.github.io/bfg-repo-cleaner/#examples
 
+  **Snap-specific notes**
+
+  You can adjust JVM memory allocation via adding the Java -Xmx arguments to the sbt command-line, example:
+
+      sbt -Xmx2048m ...
+
+  No other JVM parameters are supported as of now.
+
 # The path of icon to represent the snap, relative to the source tree directory
 # Only PNG or SVG image is supported, dimension must be greater than 256x256px
 icon: snap/gui/bfg.png
