@@ -154,6 +154,9 @@ parts:
     after:
     - selective-checkout
 
+    build-packages:
+      - openjdk-8-jdk-headless
+
     source: https://github.com/rtyley/bfg-repo-cleaner.git
     source-depth: 200
     override-pull: |
@@ -164,11 +167,26 @@ parts:
       "${SNAPCRAFT_STAGE}"/scriptlets/selective-checkout \
         --stable-tag-pattern='^[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+$'
 
-    plugin: dump
-    organize:
-      bfg: bin/
-    stage:
-    - bin/*
+    plugin: nil
+
+    override-build: |
+      echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+      apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 642AC823
+      sudo apt-get update
+      sudo apt-get install -y sbt
+      sbt compile
+      sbt bfg/assembly
+      install \
+        --mode=0644 \
+        bfg/target/bfg-*/*.jar "${SNAPCRAFT_PART_INSTALL}"/sbt.jar
+
+    stage-packages:
+      - openjdk-8-jre-headless
+
+    prime:
+      - -usr/share/X11
+      - -etc/X11
+      - -etc/fonts
 
 # Apps that are exposed by the snap package
 # If the _app_name_ is identical with the _snap_name_ it can be directly run
