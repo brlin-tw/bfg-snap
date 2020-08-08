@@ -191,10 +191,20 @@ parts:
     stage-packages:
       - openjdk-8-jre-headless
 
-    prime:
-      - -usr/share/X11
-      - -etc/X11
-      - -etc/fonts
+    filesets:
+      executables:
+        - bin/bfg-launch
+        - usr/lib/jvm/java-*/bin/java
+        - usr/lib/jvm/java-*/jre/bin/java
+
+      shared_libraries:
+        - lib/**.so*
+        - usr/lib/**.so*
+
+    # prime:
+    #   - $executables
+    #   - $shared_libraries
+
     override-prime: |
       set -o nounset
 
