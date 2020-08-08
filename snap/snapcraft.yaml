@@ -200,11 +200,16 @@ apps:
 
     # An *relative path* to an executable file root from the `prime` directory to be executed, and its command-line arguments
     # NOTE: The right angle bracket at the beginning of the value of the `command` keyword starts a YAML folded style block scalar, refer the following spec document for more info: http://yaml.org/spec/1.2/spec.html#id2796251
-    command: bin/bfg
+    command: bin/bfg-launch
 
     # The commands that are run, in order, before running the one specified by the `command` key
-    command-chain:
-    - bin/bfg-launch
+    # command-chain:
+    # - bin/launcher
+
+    environment:
+      # Hardcode locale available in snap runtime
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
 
 # Refer the following documentation for asserting interface plugs and slots in a security confined snap:
 # Interface management - doc - snapcraft.io
