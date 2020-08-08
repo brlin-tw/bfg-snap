@@ -68,3 +68,7 @@ You may generate the unique hash by using the following command in terminal:
 
 ## References
 * [create snap package for bfg tool · Issue #339 · rtyley/bfg-repo-cleaner](https://github.com/rtyley/bfg-repo-cleaner/issues/339)
+* [rtyley/bfg-repo-cleaner: Removes large or troublesome blobs like git-filter-branch does, but faster. And written in Scala](https://github.com/rtyley/bfg-repo-cleaner)
+* [bfg-repo-cleaner/BUILD.md at master · rtyley/bfg-repo-cleaner](https://github.com/rtyley/bfg-repo-cleaner/blob/master/BUILD.md)
+* [Building a Scala project - Travis CI](https://docs.travis-ci.com/user/languages/scala/)
+* [bfg-repo-cleaner/.travis.yml at master · rtyley/bfg-repo-cleaner](https://github.com/rtyley/bfg-repo-cleaner/blob/master/.travis.yml)
