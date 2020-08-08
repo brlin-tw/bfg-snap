@@ -156,6 +156,8 @@ parts:
 
     build-packages:
       - openjdk-8-jdk-headless
+      # apt-key 依賴
+      - dirmngr
 
     source: https://github.com/rtyley/bfg-repo-cleaner.git
     source-depth: 200
