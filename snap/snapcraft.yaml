@@ -166,6 +166,11 @@ parts:
     override-pull: |
       set -o nounset
 
+      echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+      apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 642AC823
+      apt-get update
+      apt-get install -y sbt
+
       snapcraftctl pull
 
       "${SNAPCRAFT_STAGE}"/scriptlets/selective-checkout \
@@ -174,10 +179,6 @@ parts:
     plugin: nil
 
     override-build: |
-      echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
-      apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 642AC823
-      sudo apt-get update
-      sudo apt-get install -y sbt
       sbt compile
       sbt bfg/assembly
       jarfile="$(
