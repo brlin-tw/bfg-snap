@@ -256,13 +256,4 @@ plugs:
   home:
   removable-media: # Non-A/C
 
-  # Application-specific files access
-  # The auto-connection requires store grant
-  # https://forum.snapcraft.io/t/the-personal-files-interface/9357
-  # https://forum.snapcraft.io/t/the-system-files-interface/9358
-  config-git:
-    interface: personal-files
-    read:
-    - $HOME/.gitconfig
-
 #slots:

@@ -9,7 +9,7 @@ set \
     -o nounset \
     -o pipefail
 
-#export IMPORTANT_ENVIRONMENT_VARIABLE=value
+export HOME="${SNAP_USER_COMMON}"
 
 script_dir="$(
     dirname "$(
@@ -33,16 +33,6 @@ until test "${#}" -eq 0; do
     esac
     shift 1
 done
-
-if ! snapctl is-connected config-git; then
-    # lint: The tilde character is used verbatim instead of command expansion
-    # shellcheck disable=SC2016
-    pritnf -- \
-        'Launcher: Error: BFG Repo-cleaner requires read-only access to your ~/.gitconfig, please run the `snap connect %s:config-git` command as root and retry.\n' \
-        "${SNAP_NAME}" \
-        1>&2
-    exit 1
-fi
 
 # workaround bash <=4.2
 set +o nounset
