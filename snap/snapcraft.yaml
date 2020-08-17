@@ -155,7 +155,7 @@ parts:
     - selective-checkout
 
     build-packages:
-      - openjdk-8-jdk-headless
+      - default-jdk-headless
       # apt-key dependency
       - dirmngr
       # Required by sbt archive
@@ -194,11 +194,12 @@ parts:
         "${SNAPCRAFT_PART_INSTALL}"/sbt.jar
 
     stage-packages:
-      - openjdk-8-jre-headless
+      - default-jre-headless
 
     filesets:
       executables:
         - bin/bfg-launch
+        - usr/lib/jvm/default-java
         - usr/lib/jvm/java-*/bin/java
         - usr/lib/jvm/java-*/jre/bin/java
 
@@ -218,7 +219,7 @@ parts:
       ln \
         --symbolic \
         --force \
-        ../usr/lib/jvm/java-8-openjdk-amd64/bin/java \
+        ../usr/lib/jvm/default-java/bin/java \
         bin/java
 
 # Apps that are exposed by the snap package
