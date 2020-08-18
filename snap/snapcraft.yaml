@@ -91,15 +91,6 @@ grade: devel
 # For `override-*` scriptlets used to modify behavior of certain part's lifecycle phase, check out:
 # https://docs.snapcraft.io/scriptlets/4892
 parts:
-  # Files to patch the files in the snap
-  # patching:
-  #   source: snap/local/patching
-  #   plugin: dump
-  #   organize:
-  #     '*': patching/
-  #   prime:
-  #   - -*
-
   # Launcher programs to fix problems at runtime
   launchers:
     source: snap/local/launchers
@@ -108,36 +99,6 @@ parts:
       '*': bin/
     stage:
     - -bin/README.*
-
-  # Programs to modify the behavior of each step of the snapcraft lifecycles
-  # scriptlets:
-  #   source: snap/local/scriptlets
-  #   plugin: dump
-  #   organize:
-  #     '*': scriptlets/
-  #   prime:
-  #   - -*
-
-  # Stage snap for fixing the glibc locales(and gnu gettext I18N support)
-  # This part is only required for non GUI apps that don't uses the desktop-launch launchers
-  #locales-launch:
-    #plugin: nil
-    #stage-snaps:
-    #- locales-launch
-    #stage-packages:
-    # For localedef(1)
-    #- libc-bin
-
-    # For locale data used by localedef(1)
-    #- locales
-
-    # All pre-generated locale data
-    # DISABLED: Lots of duplicate data will be included in snap when this is staged, unless the target machine has no resource to generate them in runtime otherwise not using it
-    #
-    #   Lack of compiled locales breaks gettext based localisation - snapcraft - snapcraft.io
-    #   https://forum.snapcraft.io/t/lack-of-compiled-locales-breaks-gettext-based-localisation/3758
-    #
-    #- locales-all
 
   # Check out the tagged release revision if it isn't promoted to the stable channel
   # https://forum.snapcraft.io/t/selective-checkout-check-out-the-tagged-release-revision-if-it-isnt-promoted-to-the-stable-channel/10617
