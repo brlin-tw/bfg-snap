@@ -150,6 +150,11 @@ parts:
     prime:
     - -*
 
+  homeishome-launch:
+    plugin: nil
+    stage-snaps:
+      - homeishome-launch
+
   main:
     after:
     - selective-checkout
@@ -237,8 +242,8 @@ apps:
     command: bfg-launch
 
     # The commands that are run, in order, before running the one specified by the `command` key
-    # command-chain:
-    # - bin/launcher
+    command-chain:
+    - bin/homeishome-launch
 
     environment:
       # Hardcode locale available in snap runtime
