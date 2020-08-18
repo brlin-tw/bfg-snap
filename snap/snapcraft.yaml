@@ -13,7 +13,7 @@
 #   https://forum.snapcraft.io/c/doc
 # For support refer to the snapcraft section in the Snapcraft Forum:
 # https://forum.snapcraft.io/c/snapcraft
-name: bfg-brlin
+name: bfg-repo-cleaner
 title: BFG Repo-Cleaner
 summary: Removes large or troublesome blobs like git-filter-branch does, but faster
 description: |
@@ -227,7 +227,7 @@ parts:
 # with `_snap_name_` or `snap run _snap_name_` commands, otherwise it can only be run
 # via `_snap_name_._app_name_` or `snap run _snap_name_._app_name_`
 apps:
-  bfg-brlin:
+  bfg-repo-cleaner:
     # The adapter to set up runtime environment at the launch of the snap
     # NOTE: The `command-chain` property is only supported by the `full` adapter
     adapter: full
