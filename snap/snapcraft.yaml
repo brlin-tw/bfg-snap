@@ -124,6 +124,7 @@ parts:
       - default-jdk-headless
       # apt-key dependency
       - dirmngr
+      - wget
       # Required by sbt archive
       - apt-transport-https
 
@@ -132,8 +133,15 @@ parts:
     override-pull: |
       set -o nounset
 
-      echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
-      apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 642AC823
+      echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
+      # Workaround not runnable in LP build
+      #apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 642AC823
+      wget \
+        -qO \
+        - \
+        'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2ee0ea64e40a89b84b2df73499e82a75642ac823' \
+        | apt-key add -
+
       apt-get update
       apt-get install -y sbt
 
