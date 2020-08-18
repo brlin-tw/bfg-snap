@@ -34,9 +34,9 @@ description: |
 
   **Snap-specific notes**
 
-  You can adjust JVM memory allocation via adding the Java -Xmx arguments to the sbt command-line, example:
+  You can adjust JVM memory allocation via adding the Java -Xmx arguments to the `bfg` command-line, example:
 
-      sbt -Xmx2048m ...
+      bfg -Xmx2048m ...
 
   No other JVM parameters are supported as of now.
 
