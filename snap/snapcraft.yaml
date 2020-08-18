@@ -234,7 +234,7 @@ apps:
 
     # An *relative path* to an executable file root from the `prime` directory to be executed, and its command-line arguments
     # NOTE: The right angle bracket at the beginning of the value of the `command` keyword starts a YAML folded style block scalar, refer the following spec document for more info: http://yaml.org/spec/1.2/spec.html#id2796251
-    command: bin/bfg-launch
+    command: bfg-launch
 
     # The commands that are run, in order, before running the one specified by the `command` key
     # command-chain:
