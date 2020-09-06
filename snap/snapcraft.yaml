@@ -14,7 +14,7 @@
 # For support refer to the snapcraft section in the Snapcraft Forum:
 # https://forum.snapcraft.io/c/snapcraft
 name: bfg-repo-cleaner
-title: BFG Repo-Cleaner
+title: BFG Repo-Cleaner (UNOFFICIAL)
 summary: Removes large or troublesome blobs like git-filter-branch does, but faster
 description: |
   The BFG is a simpler, faster alternative to [`git-filter-branch`][1] for cleansing bad data out of your Git repository history:
@@ -231,3 +231,6 @@ plugs:
   removable-media: # Non-A/C
 
 #slots:
+
+# hooks:
+#   configure:
