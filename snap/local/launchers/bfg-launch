@@ -20,22 +20,15 @@ script_dir="$(
 )"
 
 declare -a java_args=()
-declare -a app_args=()
 
-until test "${#}" -eq 0; do
-    case "${1}" in
-        -Xmx*)
-            java_args+=("${1}")
-        ;;
-        *)
-            app_args+=("${1}")
-        ;;
-    esac
-    shift 1
-done
+jvm_heap_memory_max="$(snapctl get jvm.xmx)"
+
+if test -n "${jvm_heap_memory_max}"; then
+    java_args+=(-Xmx"${jvm_heap_memory_max}")
+fi
 
 # workaround bash <=4.2
 set +o nounset
 
 # Finally run the next part of the command chain
-exec java "${java_args[@]}" -jar "${SNAP:-${script_dir}/..}"/sbt.jar "${app_args[@]}"
+exec java "${java_args[@]}" -jar "${SNAP:-${script_dir}/..}"/sbt.jar "${@}"

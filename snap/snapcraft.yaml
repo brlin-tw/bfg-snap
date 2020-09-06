@@ -34,9 +34,9 @@ description: |
 
   **Snap-specific notes**
 
-  You can adjust JVM memory allocation via adding the Java -Xmx arguments to the `bfg` command-line, example:
+  You can adjust JVM max heap size limit via the following command:
 
-      bfg -Xmx2048m ...
+      sudo snap set bfg-repo-cleaner jvm.xmx=2048m
 
   No other JVM parameters are supported as of now.
 

@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# Configure hook for configuring snap options
+set \
+    -e \
+    -u
+
+# Default not enabled
+snapctl set jvm.xmx=''
