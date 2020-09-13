@@ -19,11 +19,11 @@ Snapcrafters ([join us](https://forum.snapcraft.io/t/join-snapcrafters/1325)) ar
 - [x] Add the provided Snapcraft build badge to `snap/README.md`
 - [x] Update snap's metadata, icons and screenshots on the [dashboard](https://dashboard.snapcraft.io)
 - [x] Add install instructions to `snap/README.md`
-- [ ] File an Intent-To-Package issue/bug to the upstream's contact or issue/bug tracker to consolidate and let the upstream acknowledge the effort - [template](https://github.com/Lin-Buo-Ren/snapcrafters-template-plus/wiki/Intent-To-Package-Template) - [link]()
+- [x] File an Intent-To-Package issue/bug to the upstream's contact or issue/bug tracker to consolidate and let the upstream acknowledge the effort - [template](https://github.com/Lin-Buo-Ren/snapcrafters-template-plus/wiki/Intent-To-Package-Template) - [link](https://github.com/rtyley/bfg-repo-cleaner/issues/339#issuecomment-691729270)
 - [x] Convert the snap to `strict` confinement, or `classic` confinement if it qualifies
 - [x] Publish the confined snap in the Snap Store beta channel
 - [x] Update the install instructions in `snap/README.md`
-- [ ] Post a call for testing on the [Snapcraft Forum](https://forum.snapcraft.io) - [template](https://github.com/Lin-Buo-Ren/snapcrafters-template-plus/wiki/Call-for-Testing-Template) - [link]()
+- [x] Post a call for testing on the [Snapcraft Forum](https://forum.snapcraft.io) - [template](https://github.com/Lin-Buo-Ren/snapcrafters-template-plus/wiki/Call-for-Testing-Template) - [link](https://forum.snapcraft.io/t/call-for-testing-bfg-repo-cleaner/19948)
 - [ ] Publish the snap in the Snap Store stable channel
 - [ ] Update the install instructions in `snap/README.md`
 - [ ] Post an announcement in the [Snapcraft Forum](https://forum.snapcraft.io) - [template](https://github.com/Lin-Buo-Ren/snapcrafters-template-plus/wiki/Release-Announcement-Template) - [link]()
