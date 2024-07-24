@@ -70,7 +70,7 @@ assumes:
 
 # Base runtime
 # The common runtime for the snap to run on, or `bare` for static linked applications
-base: core
+base: core22
 # https://docs.snapcraft.io/snapcraft-top-level-metadata/8334#heading--base
 
 # Security confinement
@@ -100,26 +100,12 @@ parts:
     stage:
     - -bin/README.*
 
-  # Check out the tagged release revision if it isn't promoted to the stable channel
-  # https://forum.snapcraft.io/t/selective-checkout-check-out-the-tagged-release-revision-if-it-isnt-promoted-to-the-stable-channel/10617
-  selective-checkout:
-    plugin: nil
-    build-packages:
-    - git
-    stage-snaps:
-    - selective-checkout
-    prime:
-    - -*
-
   homeishome-launch:
     plugin: nil
     stage-snaps:
       - homeishome-launch
 
   main:
-    after:
-    - selective-checkout
-
     build-packages:
       - default-jdk-headless
       # apt-key dependency
@@ -128,26 +114,28 @@ parts:
       # Required by sbt archive
       - apt-transport-https
 
+      # selective-checkout dependencies
+      - curl
+      - git
+      - jq
+      - sed
+
     source: https://github.com/rtyley/bfg-repo-cleaner.git
     source-depth: 200
     override-pull: |
       set -o nounset
 
-      echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list
-      # Workaround not runnable in LP build
-      #apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 642AC823
-      wget \
-        -qO \
-        - \
-        'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2ee0ea64e40a89b84b2df73499e82a75642ac823' \
-        | apt-key add -
-
+      # Download | sbt
+      # https://www.scala-sbt.org/download
+      echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | tee /etc/apt/sources.list.d/sbt.list
+      echo "deb https://repo.scala-sbt.org/scalasbt/debian /" | tee /etc/apt/sources.list.d/sbt_old.list
+      curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | apt-key add
       apt-get update
       apt-get install -y sbt
 
-      snapcraftctl pull
+      craftctl default
 
-      "${SNAPCRAFT_STAGE}"/scriptlets/selective-checkout \
+      "${CRAFT_PROJECT_DIR}/snap/local/scriptlets/selective-checkout" \
         --stable-tag-pattern='^[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+$'
 
     plugin: nil
@@ -165,30 +153,15 @@ parts:
       install \
         --mode=0644 \
         "${jarfile}" \
-        "${SNAPCRAFT_PART_INSTALL}"/sbt.jar
+        "${CRAFT_PART_INSTALL}"/sbt.jar
 
     stage-packages:
       - default-jre-headless
 
-    filesets:
-      executables:
-        - bin/bfg-launch
-        - usr/lib/jvm/default-java
-        - usr/lib/jvm/java-*/bin/java
-        - usr/lib/jvm/java-*/jre/bin/java
-
-      shared_libraries:
-        - lib/**.so*
-        - usr/lib/**.so*
-
-    # prime:
-    #   - $executables
-    #   - $shared_libraries
-
     override-prime: |
       set -o nounset
 
-      snapcraftctl prime
+      craftctl default
 
       ln \
         --symbolic \
@@ -202,13 +175,9 @@ parts:
 # via `_snap_name_._app_name_` or `snap run _snap_name_._app_name_`
 apps:
   bfg-repo-cleaner:
-    # The adapter to set up runtime environment at the launch of the snap
-    # NOTE: The `command-chain` property is only supported by the `full` adapter
-    adapter: full
-
     # An *relative path* to an executable file root from the `prime` directory to be executed, and its command-line arguments
     # NOTE: The right angle bracket at the beginning of the value of the `command` keyword starts a YAML folded style block scalar, refer the following spec document for more info: http://yaml.org/spec/1.2/spec.html#id2796251
-    command: bfg-launch
+    command: bin/bfg-launch
 
     # The commands that are run, in order, before running the one specified by the `command` key
     command-chain:
@@ -219,18 +188,6 @@ apps:
       LANG: C.UTF-8
       LC_ALL: C.UTF-8
 
-# Refer the following documentation for asserting interface plugs and slots in a security confined snap:
-# Interface management - doc - snapcraft.io
-# https://docs.snapcraft.io/interface-management/6154
-# Supported interfaces - doc - snapcraft.io
-# https://docs.snapcraft.io/supported-interfaces/7744
-# Non-A/C: Non-autoconnect interface
-plugs:
-  # Regular files access
-  home:
-  removable-media: # Non-A/C
-
-#slots:
-
-# hooks:
-#   configure:
+    plugs:
+    - home
+    - removable-media
