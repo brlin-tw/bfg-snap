@@ -83,7 +83,7 @@ confinement: strict
 # Use `devel` to getting started
 # Flip to `stable` once you determine that the snap is matured, only `stable` grade
 # snaps can be promoted to `candidate` and `stable` channels
-grade: devel
+grade: stable
 
 # Run `snapcraft help sources` for supported keywords on pulling a part's source ingredients
 # Run `snapcraft plugins` for supported build helper plugins
