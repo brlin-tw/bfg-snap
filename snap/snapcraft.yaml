@@ -66,7 +66,7 @@ adopt-info: main
 # Snapd feature set and version the snap requires in order to work
 # https://forum.snapcraft.io/t/snapcraft-top-level-metadata/8334#heading--assumes
 assumes:
-- command-chain
+  - command-chain
 
 # Base runtime
 # The common runtime for the snap to run on, or `bare` for static linked applications
@@ -98,18 +98,18 @@ parts:
     organize:
       '*': bin/
     stage:
-    - -bin/README.*
+      - -bin/README.*
 
   # Check out the tagged release revision if it isn't promoted to the stable channel
   # https://forum.snapcraft.io/t/selective-checkout-check-out-the-tagged-release-revision-if-it-isnt-promoted-to-the-stable-channel/10617
   selective-checkout:
     plugin: nil
     build-packages:
-    - git
+      - git
     stage-snaps:
-    - selective-checkout
+      - selective-checkout
     prime:
-    - -*
+      - -*
 
   homeishome-launch:
     plugin: nil
@@ -118,7 +118,7 @@ parts:
 
   main:
     after:
-    - selective-checkout
+      - selective-checkout
 
     build-packages:
       - default-jdk-headless
@@ -212,25 +212,13 @@ apps:
 
     # The commands that are run, in order, before running the one specified by the `command` key
     command-chain:
-    - bin/homeishome-launch
+      - bin/homeishome-launch
 
     environment:
       # Hardcode locale available in snap runtime
       LANG: C.UTF-8
       LC_ALL: C.UTF-8
 
-# Refer the following documentation for asserting interface plugs and slots in a security confined snap:
-# Interface management - doc - snapcraft.io
-# https://docs.snapcraft.io/interface-management/6154
-# Supported interfaces - doc - snapcraft.io
-# https://docs.snapcraft.io/supported-interfaces/7744
-# Non-A/C: Non-autoconnect interface
-plugs:
-  # Regular files access
-  home:
-  removable-media: # Non-A/C
-
-#slots:
-
-# hooks:
-#   configure:
+    plugs:
+      - home
+      - removable-media
