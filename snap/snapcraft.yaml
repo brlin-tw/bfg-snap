@@ -66,7 +66,7 @@ adopt-info: main
 # Snapd feature set and version the snap requires in order to work
 # https://forum.snapcraft.io/t/snapcraft-top-level-metadata/8334#heading--assumes
 assumes:
-- command-chain
+  - command-chain
 
 # Base runtime
 # The common runtime for the snap to run on, or `bare` for static linked applications
@@ -98,7 +98,7 @@ parts:
     organize:
       '*': bin/
     stage:
-    - -bin/README.*
+      - -bin/README.*
 
   homeishome-launch:
     plugin: nil
@@ -181,7 +181,7 @@ apps:
 
     # The commands that are run, in order, before running the one specified by the `command` key
     command-chain:
-    - bin/homeishome-launch
+      - bin/homeishome-launch
 
     environment:
       # Hardcode locale available in snap runtime
@@ -189,5 +189,5 @@ apps:
       LC_ALL: C.UTF-8
 
     plugs:
-    - home
-    - removable-media
+      - home
+      - removable-media
