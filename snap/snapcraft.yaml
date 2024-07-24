@@ -153,7 +153,7 @@ parts:
       install \
         --mode=0644 \
         "${jarfile}" \
-        "${CRAFT_PART_INSTALL}"/sbt.jar
+        "${CRAFT_PART_INSTALL}/sbt.jar"
 
     stage-packages:
       - default-jre-headless
