@@ -165,7 +165,7 @@ parts:
       install \
         --mode=0644 \
         "${jarfile}" \
-        "${SNAPCRAFT_PART_INSTALL}"/sbt.jar
+        "${SNAPCRAFT_PART_INSTALL}/sbt.jar"
 
     stage-packages:
       - default-jre-headless
