@@ -152,26 +152,7 @@ parts:
     #   - $executables
     #   - $shared_libraries
 
-    override-prime: |
-      set -o nounset
-
-      if ! snapcraftctl prime; then
-        printf \
-          'Error: Unable to run the default logic of the prime step.\n' \
-          1>&2
-        exit 2
-      fi
-
-      if ! ln \
-        --symbolic \
-        --force \
-        ../usr/lib/jvm/default-java/bin/java \
-        bin/java; then
-        printf \
-          'Error: Unable to configure the Java interpreter command link.\n' \
-          1>&2
-        exit 2
-      fi
+    override-prime: "${SNAPCRAFT_PROJECT_DIR}/snap/local/scriptlets/prime.sh"
 
 # Apps that are exposed by the snap package
 # If the _app_name_ is identical with the _snap_name_ it can be directly run
