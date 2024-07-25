@@ -42,6 +42,21 @@ fi
 
 printf \
     'Info: Configuring the Java interpreter command link...\n'
+if ! test -e bin; then
+    install_opts=(
+        --directory
+        --owner root
+        --group root
+        --mode 0755
+        --verbose
+    )
+    if ! install "${install_opts[@]}" bin; then
+        printf \
+            'Error: Unable to create the executable directory.\n' \
+            1>&2
+        exit 2
+    fi
+fi
 ln_opts=(
     --symbolic
     --force
