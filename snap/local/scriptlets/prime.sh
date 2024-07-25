@@ -32,6 +32,30 @@ if ! trap 'printf "Error: The program has encountered an unhandled error and is 
 fi
 
 printf \
+    'Info: Checking the existence of the required commands...\n'
+required_commands=(
+    snapcraftctl
+    install
+    ln
+)
+flag_required_command_check_failed=false
+for command in "${required_commands[@]}"; do
+    if ! command -v "${command}" >/dev/null; then
+        flag_required_command_check_failed=true
+        printf \
+            'Error: This program requires the "%s" command to be available in your command search PATHs.\n' \
+            "${command}" \
+            1>&2
+    fi
+done
+if test "${flag_required_command_check_failed}" == true; then
+    printf \
+        'Error: Required command check failed, please check your installation.\n' \
+        1>&2
+    exit 1
+fi
+
+printf \
     'Info: Running the default logic of the prime step...\n'
 if ! snapcraftctl prime; then
     printf \
