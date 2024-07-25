@@ -38,9 +38,11 @@ if ! craftctl default; then
     exit 2
 fi
 
-if ! ln \
-    --symbolic \
-    --force \
+ln_opts=(
+    --symbolic
+    --force
+)
+if ! ln "${ln_opts[@]}" \
     ../usr/lib/jvm/default-java/bin/java \
     bin/java; then
     printf \
