@@ -94,6 +94,11 @@ package-repositories:
     key-id: 2EE0EA64E40A89B84B2DF73499E82A75642AC823
     url: https://repo.scala-sbt.org/scalasbt/debian
 
+  - type: apt
+    path: /
+    key-id: 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+    url: https://repo.scala-sbt.org/scalasbt/debian
+
 # Run `snapcraft help sources` for supported keywords on pulling a part's source ingredients
 # Run `snapcraft plugins` for supported build helper plugins
 # Run `snapcraft help plugins` for supported keywords on building a part
