@@ -153,6 +153,24 @@ parts:
     #   - $shared_libraries
 
     override-prime: "${SNAPCRAFT_PROJECT_DIR}/snap/local/scriptlets/prime.sh"
+    prime:
+      - -usr/lib/jvm/java-*-openjdk-*/bin/jjs
+      - -usr/lib/jvm/java-*-openjdk-*/bin/keytool
+      - -usr/lib/jvm/java-*-openjdk-*/bin/pack200
+      - -usr/lib/jvm/java-*-openjdk-*/bin/rmid
+      - -usr/lib/jvm/java-*-openjdk-*/bin/rmiregistry
+      - -usr/lib/jvm/java-*-openjdk-*/bin/unpack200
+      - -usr/lib/*-linux-gnu/libasound.so*
+      - -usr/lib/*-linux-gnu/libavahi-client.so*
+      - -usr/lib/*-linux-gnu/libcups.so*
+      - -usr/lib/*-linux-gnu/libfontconfig.so*
+      - -usr/lib/*-linux-gnu/libharfbuzz.so*
+      - -usr/lib/*-linux-gnu/libjpeg.so*
+      - -usr/lib/*-linux-gnu/liblcms*.so*
+      - -usr/lib/*-linux-gnu/libnss*.so*
+      - -usr/lib/*-linux-gnu/libsmime*.so*
+      - -usr/lib/*-linux-gnu/libssl*.so*
+      - -usr/sbin/update-java-alternatives
 
 # Apps that are exposed by the snap package
 # If the _app_name_ is identical with the _snap_name_ it can be directly run
