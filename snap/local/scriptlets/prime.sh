@@ -37,6 +37,7 @@ required_commands=(
     craftctl
     install
     ln
+    readlink
 )
 flag_required_command_check_failed=false
 for command in "${required_commands[@]}"; do
@@ -93,3 +94,48 @@ if ! ln "${ln_opts[@]}" \
         1>&2
     exit 2
 fi
+
+printf \
+    'Info: Fixing invalid OpenJDK blacklisted.cert links...\n'
+if ! shopt -s nullglob; then
+    printf \
+        'Error: Unable to set the nullglob shell option.\n' \
+        1>&2
+    exit 2
+fi
+
+blacklisted_certs_links=(usr/lib/jvm/java-*-openjdk-*/lib/security/blacklisted.certs)
+for link in "${blacklisted_certs_links[@]}"; do
+    if ! test -L "${link}"; then
+        continue
+    fi
+
+    if ! link_target="$(readlink "${link}")"; then
+        printf \
+            'Error: Unable to determine the link target of "%s" symbolic link.\n' \
+            "${link}" \
+            1>&2
+        exit 2
+    fi
+
+    if test "${link_target:0:3}" == ../; then
+        # Link is relative path or is already patched
+        continue
+    fi
+
+    fixed_link_target="${link_target//\/etc/../../../../../../etc}"
+    ln_opts=(
+        --force
+        --symbolic
+        --no-target-directory
+        --verbose
+    )
+    if ! ln "${ln_opts[@]}" "${fixed_link_target}" "${link}"; then
+        printf \
+            'Error: Unable to recreate the "%s" symbolic link.\n' \
+            "${link}" \
+            1>&2
+        exit 2
+    fi
+done
+
