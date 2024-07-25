@@ -28,19 +28,19 @@ if ! trap 'printf "Error: The program has encountered an unhandled error and is 
 fi
 
 printf \
-    'Info: Running the "sbt compile" build command...\n'
-if ! sbt compile; then
+    'Info: Compiling bfg sources...\n'
+if ! sbt bfg/compile; then
     printf \
-        'Error: Unable to run the "sbt compile" build command.\n' \
+        'Error: Unable to compile the bfg sources.\n' \
         1>&2
     exit 2
 fi
 
 printf \
-    'Info: Running the "sbt bfg/assembly" build command...\n'
-if ! sbt bfg/assembly; then
+    'Info: Building the bfg JAR archive...\n'
+if ! sbt bfg/packageBin; then
     printf \
-        'Error: Unable to run the "sbt bfg/assembly" build command.\n' \
+        'Error: Unable to build the bfg JAR archive.\n' \
         1>&2
     exit 2
 fi
