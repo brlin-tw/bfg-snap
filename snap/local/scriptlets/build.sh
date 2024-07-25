@@ -27,6 +27,8 @@ if ! trap 'printf "Error: The program has encountered an unhandled error and is 
     exit 1
 fi
 
+printf \
+    'Info: Running the "sbt compile" build command...\n'
 if ! sbt compile; then
     printf \
         'Error: Unable to run the "sbt compile" build command.\n' \
@@ -34,6 +36,8 @@ if ! sbt compile; then
     exit 2
 fi
 
+printf \
+    'Info: Running the "sbt bfg/assembly" build command...\n'
 if ! sbt bfg/assembly; then
     printf \
         'Error: Unable to run the "sbt bfg/assembly" build command.\n' \
@@ -41,6 +45,8 @@ if ! sbt bfg/assembly; then
     exit 2
 fi
 
+printf \
+    'Info: Enumerating the built BFG Repo-Cleaner JAR archive...\n'
 if ! jarfile="$(
     find bfg/target \
         -name '*.jar' \
@@ -52,7 +58,12 @@ if ! jarfile="$(
         1>&2
     exit 2
 fi
+printf \
+    'Info: The built BFG Repo-Cleaner JAR archive is determined to be %s.\n' \
+    "${jarfile}"
 
+printf \
+    'Info: Installing the built BFG Repo-Cleaner JAR archive...\n'
 if ! install \
     --mode=0644 \
     "${jarfile}" \
