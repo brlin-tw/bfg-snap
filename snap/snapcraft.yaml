@@ -85,6 +85,15 @@ confinement: strict
 # snaps can be promoted to `candidate` and `stable` channels
 grade: stable
 
+# Snapcraft package repositories
+# https://snapcraft.io/docs/package-repositories
+package-repositories:
+  - type: apt
+    components: [main]
+    suites: [all]
+    key-id: 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+    url: https://repo.scala-sbt.org/scalasbt/debian
+
 # Run `snapcraft help sources` for supported keywords on pulling a part's source ingredients
 # Run `snapcraft plugins` for supported build helper plugins
 # Run `snapcraft help plugins` for supported keywords on building a part
@@ -108,11 +117,7 @@ parts:
   main:
     build-packages:
       - default-jdk-headless
-      # apt-key dependency
-      - dirmngr
-      - wget
-      # Required by sbt archive
-      - apt-transport-https
+      - sbt
 
       # selective-checkout dependencies
       - curl
