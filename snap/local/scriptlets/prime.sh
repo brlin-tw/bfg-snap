@@ -31,6 +31,8 @@ if ! trap 'printf "Error: The program has encountered an unhandled error and is 
     exit 1
 fi
 
+printf \
+    'Info: Running the default logic of the prime step...\n'
 if ! snapcraftctl prime; then
     printf \
         'Error: Unable to run the default logic of the prime step.\n' \
@@ -38,6 +40,8 @@ if ! snapcraftctl prime; then
     exit 2
 fi
 
+printf \
+    'Info: Configuring the Java interpreter command link...\n'
 ln_opts=(
     --symbolic
     --force
