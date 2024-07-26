@@ -138,4 +138,3 @@ for link in "${blacklisted_certs_links[@]}"; do
         exit 2
     fi
 done
-
