@@ -85,6 +85,9 @@ confinement: strict
 # snaps can be promoted to `candidate` and `stable` channels
 grade: stable
 
+contact: https://github.com/brlin-tw/bfg-snap/issues
+website: https://github.com/brlin-tw/bfg-snap
+
 # Snapcraft package repositories
 # https://snapcraft.io/docs/package-repositories
 package-repositories:
