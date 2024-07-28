@@ -160,16 +160,25 @@ parts:
       - -usr/lib/jvm/java-*-openjdk-*/bin/rmid
       - -usr/lib/jvm/java-*-openjdk-*/bin/rmiregistry
       - -usr/lib/jvm/java-*-openjdk-*/bin/unpack200
+      - -usr/lib/jvm/java-*-openjdk-*/lib/libjavajpeg.so
+      - -usr/lib/jvm/java-*-openjdk-*/lib/libfontmanager.so
+      - -usr/lib/jvm/java-*-openjdk-*/lib/libmlib_image.so
+      - -usr/lib/jvm/java-*-openjdk-*/man
       - -usr/lib/*-linux-gnu/libasound.so*
       - -usr/lib/*-linux-gnu/libavahi-client.so*
+      - -usr/lib/*-linux-gnu/libavahi-common.so*
       - -usr/lib/*-linux-gnu/libcups.so*
       - -usr/lib/*-linux-gnu/libfontconfig.so*
+      - -usr/lib/*-linux-gnu/libgraphite*.so*
       - -usr/lib/*-linux-gnu/libharfbuzz.so*
       - -usr/lib/*-linux-gnu/libjpeg.so*
       - -usr/lib/*-linux-gnu/liblcms*.so*
       - -usr/lib/*-linux-gnu/libnss*.so*
+      - -usr/lib/*-linux-gnu/libplc*.so*
+      - -usr/lib/*-linux-gnu/libplds*.so
       - -usr/lib/*-linux-gnu/libsmime*.so*
       - -usr/lib/*-linux-gnu/libssl*.so*
+      - -usr/lib/*-linux-gnu/nss/*.so*
       - -usr/sbin/update-java-alternatives
 
 # Apps that are exposed by the snap package
