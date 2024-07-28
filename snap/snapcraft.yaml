@@ -161,6 +161,7 @@ parts:
       - -usr/lib/*-linux-gnu/libjpeg.so*
       - -usr/lib/*-linux-gnu/liblcms*.so*
       - -usr/lib/*-linux-gnu/libnss*.so*
+      - -usr/lib/*-linux-gnu/libnspr*.so*
       - -usr/lib/*-linux-gnu/libplc*.so*
       - -usr/lib/*-linux-gnu/libplds*.so
       - -usr/lib/*-linux-gnu/libsmime*.so*
