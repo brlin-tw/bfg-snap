@@ -89,7 +89,7 @@ fi
 printf \
     'Info: Running the selective-checkout scriptlet...\n'
 selective_checkout_opts=(
-    --stable-tag-pattern='^[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+$'
+    --stable-tag-pattern='^v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+$'
 )
 if ! "${SNAPCRAFT_STAGE}/scriptlets/selective-checkout" \
     "${selective_checkout_opts[@]}"; then
