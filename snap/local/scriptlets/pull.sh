@@ -40,7 +40,6 @@ printf \
     'Info: Running the selective-checkout scriptlet...\n'
 selective_checkout_opts=(
     --stable-tag-pattern='^v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+$'
-    --force-stable
 )
 if ! "${CRAFT_PROJECT_DIR}/snap/local/scriptlets/selective-checkout" \
     "${selective_checkout_opts[@]}"; then
