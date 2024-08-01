@@ -124,7 +124,7 @@ parts:
       - default-jdk-headless
       # apt-key dependency
       - dirmngr
-      - wget
+      - curl
       # Required by sbt archive
       - apt-transport-https
 
