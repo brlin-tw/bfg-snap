@@ -120,7 +120,7 @@ parts:
   homeishome-launch:
     plugin: nil
     stage-snaps:
-      - homeishome-launch
+      - homeishome-launch/core22
 
   main:
     build-packages:
